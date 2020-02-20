@@ -1,0 +1,67 @@
+plugins {
+    id 'groovy'
+    id 'java'
+    id 'java-gradle-plugin'
+    id 'com.gradle.plugin-publish' version '0.10.1'
+    id 'org.jetbrains.kotlin.jvm' version '1.3.61'
+}
+
+group 'io.jumpco.kfsm.open'
+version '0.9.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+pluginBundle {
+    website = 'https://open.jumpco.io/projects/kfsm-viz.html'
+    vcsUrl = 'https://github.com/open-jumpco/kfsm-viz-plugin'
+    tags = ['fsm', 'kotlin', 'plantuml', 'asciidoc', 'visualize']
+}
+
+gradlePlugin {
+    plugins {
+        kfsmVizPlugin {
+            id = 'io.jumpco.open.kfsm.gradle.viz-plugin'
+            displayName = 'kfsm-viz-plugin'
+            description = 'KFSM Visualization plugin for plantuml and asciidoc'
+            implementationClass = 'io.jumpco.open.kfsm.gradle.VizPlugin'
+        }
+        /*
+        gradletestPlugin {
+            id = 'org.ysb33r.gradletest'
+            displayName = 'Plugin for compatibility testing of Gradle plugins'
+            description = 'A plugin that helps you test your plugin against a variety of Gradle versions'
+            implementationClass = 'org.ysb33r.gradle.gradletest.GradleTestPlugin'
+        }
+        */
+    }
+}
+
+dependencies {
+    compileOnly gradleApi()
+    compileOnly localGroovy()
+    implementation 'io.jumpco.open:kfsm-viz:0.9.0-SNAPSHOT'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+    testCompileOnly localGroovy()
+    testImplementation 'junit:junit:4.13'
+    testImplementation 'org.assertj:assertj-core:3.6.2'
+    testCompileOnly gradleTestKit()
+    testCompile group: 'org.spockframework', name: 'spock-core', version: '1.3-groovy-2.5'
+
+}
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+
