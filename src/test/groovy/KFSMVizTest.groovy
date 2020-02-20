@@ -16,11 +16,9 @@ class KFSMVizTest {
 
     @Before
     public void setup() {
-        def srcPacketReader = new File('src/test/resources/PacketReader.kt')
-        packetReader = testProjectDir.newFile('PacketReader.kt')
-        packetReader.text = srcPacketReader.text
         buildFile = testProjectDir.newFile('build.gradle')
         buildFile << "plugins { id 'io.jumpco.open.kfsm.gradle.viz-plugin' } "
+        copy(new File('src/test/resources'), buildFile.parentFile)
     }
 
     @Test
@@ -29,10 +27,18 @@ class KFSMVizTest {
     kfsmViz {
         fsm('PacketReaderFSM') {
             input = file('PacketReader.kt')
+            output = 'packet-reader'
             outputFolder = file('generated')            
             isGeneratePlantUml = true
             isGenerateAsciidoc = true
         }
+        fsm('TurnstileFSM') {
+            input = file('Turnstile.kt')
+            output = 'turnstile'
+            outputFolder = file('generated')
+            isGeneratePlantUml = true
+            isGenerateAsciidoc = true
+        }            
     }
 """
         def result = GradleRunner.create()
