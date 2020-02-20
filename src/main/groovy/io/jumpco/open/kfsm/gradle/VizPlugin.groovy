@@ -11,7 +11,9 @@ class VizPlugin implements Plugin<Project> {
 
     void apply(Project project) {
         def kfsmViz = project.extensions.create(KFSM_VIZ, VizPluginExtension)
-        project.tasks.register("generateFsmViz", KFSMVizualisationTask)
+        project.tasks.register('generateFsmViz', KFSMVizualisationTask) {
+            group = 'documentation'
+        }
     }
 
 }

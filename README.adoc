@@ -1,0 +1,27 @@
+= KFSM Visualization Gradle Plugin
+
+== Getting started
+
+== Configuration
+[source,GROOVY]
+----
+kfsmViz {
+    fsm('PacketReaderFSM') {
+        input = file('src/main/kotlin/PacketReader.kt') // Required, fully qualified filename of relevant source file
+        isGeneratePlantUml = true // Required default is false
+        isGenerateAsciidoc = true // Required default is false
+        output = 'packet-reader' // Optional filename base. The default is the classname
+        outputFolder = file('generated') // Option directory for output file. Default is buildDir/generated
+        plantUmlName = 'packet-reader-statediagram.plantuml' // Optional filename for plantuml output.
+        asciidocName = 'packet-reader-state-table.adoc' // Optional name of Asciidoc output file.
+    }
+}
+----
+
+== Task
+
+[source,base]
+----
+./gradle generateFsmViz
+----
+

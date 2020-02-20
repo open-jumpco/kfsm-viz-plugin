@@ -5,7 +5,8 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TemporaryFolder
-import static org.gradle.testkit.runner.TaskOutcome.*
+
+import static org.gradle.testkit.runner.TaskOutcome.SUCCESS
 
 class KFSMVizTest {
     @Rule
@@ -42,5 +43,20 @@ class KFSMVizTest {
 
         assert result.task(":generateFsmViz").outcome == SUCCESS
         println("Temp folder=$buildFile.parent")
+        copy(buildFile.parentFile, new File('build','output'))
+    }
+
+    def copy(File source, File target) {
+        if (source.isDirectory()) {
+            source.eachFile {
+                copy(it, new File(target, it.name))
+            }
+        } else {
+            if (!target.parentFile.exists()) {
+                target.parentFile.mkdirs()
+            }
+            println("Copy $source.path -> $target.path")
+            target.bytes = source.bytes
+        }
     }
 }
