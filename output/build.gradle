@@ -1,0 +1,9 @@
+plugins { id 'io.jumpco.open.kfsm.gradle.viz-plugin' } 
+    kfsmViz {
+        fsm('PacketReaderFSM') {
+            input = file('PacketReader.kt')
+            outputFolder = file('generated')            
+            isGeneratePlantUml = true
+            isGenerateAsciidoc = true
+        }
+    }

@@ -28,7 +28,8 @@ class KFSMVizTest {
         buildFile << """
     kfsmViz {
         fsm('PacketReaderFSM') {
-            input = file('PacketReader.kt')            
+            input = file('PacketReader.kt')
+            outputFolder = file('generated')            
             isGeneratePlantUml = true
             isGenerateAsciidoc = true
         }
@@ -43,7 +44,7 @@ class KFSMVizTest {
 
         assert result.task(":generateFsmViz").outcome == SUCCESS
         println("Temp folder=$buildFile.parent")
-        copy(buildFile.parentFile, new File('build','output'))
+        copy(buildFile.parentFile, new File('output'))
     }
 
     def copy(File source, File target) {

@@ -2,26 +2,38 @@
 
 == Getting started
 
+Plugin Id: io.jumpco.open.kfsm.gradle.viz-plugin
+Version: 1.0.0
+
+=== Gradle Groovy DSL
+[source,groovy]
+----
+plugins {
+    id 'io.jumpco.open.kfsm.gradle.viz-plugin' version '1.0.0'
+}
+----
+
 == Configuration
-[source,GROOVY]
+
+=== Gradle Groovy DSL
+[source,groovy]
 ----
 kfsmViz {
-    fsm('PacketReaderFSM') {
-        input = file('src/main/kotlin/PacketReader.kt') // Required, fully qualified filename of relevant source file
-        isGeneratePlantUml = true // Required default is false
-        isGenerateAsciidoc = true // Required default is false
-        output = 'packet-reader' // Optional filename base. The default is the classname
-        outputFolder = file('generated') // Option directory for output file. Default is buildDir/generated
-        plantUmlName = 'packet-reader-statediagram.plantuml' // Optional filename for plantuml output.
-        asciidocName = 'packet-reader-state-table.adoc' // Optional name of Asciidoc output file.
-    }
+  fsm('PacketReaderFSM') {
+    input = file('src/main/kotlin/PacketReader.kt') // Required, fully qualified filename of relevant source file
+    isGeneratePlantUml = true // Required default is false
+    isGenerateAsciidoc = true // Required default is false
+    output = 'packet-reader'                             // Optional filename base. The default is the classname
+    outputFolder = file('generated')                     // Option directory for output file. Default is buildDir/generated
+    plantUmlName = 'packet-reader-statediagram.plantuml' // Optional filename for plantuml output.
+    asciidocName = 'packet-reader-state-table.adoc'      // Optional name of Asciidoc output file.
+  }
 }
 ----
 
 == Task
 
-[source,base]
+[source,bash]
 ----
-./gradle generateFsmViz
+./gradle :generateFsmViz
 ----
-
