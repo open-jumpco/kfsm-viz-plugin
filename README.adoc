@@ -20,16 +20,24 @@ plugins {
 ----
 kfsmViz {
   fsm('PacketReaderFSM') {
-    input = file('src/main/kotlin/PacketReader.kt') // Required, fully qualified filename of relevant source file
-    isGeneratePlantUml = true // Required default is false
-    isGenerateAsciidoc = true // Required default is false
-    output = 'packet-reader'                             // Optional filename base. The default is the classname
-    outputFolder = file('generated')                     // Option directory for output file. Default is buildDir/generated
-    plantUmlName = 'packet-reader-statediagram.plantuml' // Optional filename for plantuml output.
-    asciidocName = 'packet-reader-state-table.adoc'      // Optional name of Asciidoc output file.
+    input = file('src/main/kotlin/PacketReader.kt') // <1>
+    isGeneratePlantUml = true // <2>
+    isGenerateAsciidoc = true // <3>
+    output = 'packet-reader' // <4>
+    outputFolder = file('generated') // <5>
+    plantUmlName = 'packet-reader-statediagram.plantuml' // <6>
+    asciidocName = 'packet-reader-state-table.adoc'      // <7>
   }
 }
 ----
+<1> `input: File`: Required, fully qualified filename of relevant source file
+<2> `isGeneratePlantUml: Boolean`: Required default is false
+<3> `isGenerateAsciidoc: Boolean`: Required default is false
+<4> `output: String`: Optional filename base. The default is the classname
+<5> `outputFolder: File`: Optional directory for output file. Default is `$buildDir/generated`
+<6> `plantUmlName: String`: Optional filename for plantuml output. Default is `$output.plantuml`
+<7> `asciidocName: String`: Optional name of Asciidoc output file. Default is `$output.adoc`
+
 
 === Example for multiple FSM definitions
 [source,groovy]

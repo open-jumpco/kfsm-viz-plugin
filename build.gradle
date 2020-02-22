@@ -7,7 +7,7 @@ plugins {
 }
 
 group 'io.jumpco.kfsm.open'
-version '1.0.0'
+version '1.0.2'
 
 sourceCompatibility = 1.8
 
@@ -22,9 +22,10 @@ pluginBundle {
     vcsUrl = 'https://github.com/open-jumpco/kfsm-viz-plugin'
     plugins {
         kfsmVizPlugin {
-            displayName = 'kfsm-viz-plugin'
+            displayName = 'KFSM Visualization plugin'
+            description = 'KFSM Visualization plugin for plantuml and asciidoc'
             tags = ['fsm', 'kotlin', 'plantuml', 'asciidoc', 'visualize']
-            version = '1.0.0'
+            version = project.version
         }
     }
 }
@@ -33,8 +34,6 @@ gradlePlugin {
     plugins {
         kfsmVizPlugin {
             id = 'io.jumpco.open.kfsm.viz-plugin'
-            displayName = 'kfsm-viz-plugin'
-            description = 'KFSM Visualization plugin for plantuml and asciidoc'
             implementationClass = 'io.jumpco.open.kfsm.gradle.VizPlugin'
         }
     }
