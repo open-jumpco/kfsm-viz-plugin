@@ -17,7 +17,8 @@ class KFSMVizTest {
     @Before
     public void setup() {
         buildFile = testProjectDir.newFile('build.gradle')
-        buildFile << "plugins { id 'io.jumpco.open.kfsm.gradle.viz-plugin' } "
+        buildFile << "plugins { id 'io.jumpco.open.kfsm.viz-plugin' } "
+
         copy(new File('src/test/resources'), buildFile.parentFile)
     }
 

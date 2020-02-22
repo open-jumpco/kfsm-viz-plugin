@@ -1,0 +1,22 @@
+apply plugin: 'io.jumpco.open.kfsm.viz-plugin'
+
+task runGradleTest {
+    dependsOn 'generateFsmViz'
+}
+
+kfsmViz {
+    fsm('PacketReaderFSM') {
+        input = file('resources/PacketReader.kt')
+        output = 'packet-reader'
+        outputFolder = file('generated')
+        isGeneratePlantUml = true
+        isGenerateAsciidoc = true
+    }
+    fsm('TurnstileFSM') {
+        input = file('resources/Turnstile.kt')
+        output = 'turnstile'
+        outputFolder = file('generated')
+        isGeneratePlantUml = true
+        isGenerateAsciidoc = true
+    }
+}
