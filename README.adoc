@@ -13,6 +13,14 @@ plugins {
 }
 ----
 
+[Important]
+====
+*Important*
+
+- The plugin is pending approval and not yet available.
+- Hopefully sorted soon.
+====
+
 == Configuration
 
 === Gradle Groovy DSL
