@@ -51,21 +51,21 @@ kfsmViz {
 [source,groovy]
 ----
 kfsmViz {
-  fsm('PacketReaderFSM') {
-    input = file('src/main/kotlin/PacketReader.kt')
-    output = 'packet-reader'
-    outputFolder = file('generated')
-    isGeneratePlantUml = true
-    isGenerateAsciidoc = true
- }
-        fsm('TurnstileFSM') {
-            input = file('src/main/kotlin/Turnstile.kt')
-            output = 'turnstile'
-            outputFolder = file('generated')
-            isGeneratePlantUml = true
-            isGenerateAsciidoc = true
-        }
+    fsm('PacketReaderFSM') {
+        input = file('src/main/kotlin/PacketReader.kt')
+        output = 'packet-reader'
+        outputFolder = file('generated')
+        isGeneratePlantUml = true
+        isGenerateAsciidoc = true
     }
+    fsm('TurnstileFSM') {
+        input = file('src/main/kotlin/Turnstile.kt')
+        output = 'turnstile'
+        outputFolder = file('generated')
+        isGeneratePlantUml = true
+        isGenerateAsciidoc = true
+    }
+}
 ----
 
 == Task
