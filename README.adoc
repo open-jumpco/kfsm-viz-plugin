@@ -3,7 +3,7 @@
 == Getting started
 
 Plugin Id: io.jumpco.open.kfsm.gradle.viz-plugin
-Version: 1.0.3
+Version: 1.0.4-SNAPSHOT
 
 === Gradle Groovy DSL
 [source,groovy]
