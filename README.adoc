@@ -2,14 +2,14 @@
 
 == Getting started
 
-Plugin Id: io.jumpco.open.kfsm.gradle.viz-plugin
+Plugin Id: io.jumpco.open.kfsm.viz-plugin
 Version: 1.0.4-SNAPSHOT
 
 === Gradle Groovy DSL
 [source,groovy]
 ----
 plugins {
-    id 'io.jumpco.open.kfsm.gradle.viz-plugin' version '1.0.3'
+    id 'io.jumpco.open.kfsm.viz-plugin' version '1.0.3'
 }
 ----
 
