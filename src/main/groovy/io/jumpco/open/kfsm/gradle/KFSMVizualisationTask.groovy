@@ -22,6 +22,7 @@ class KFSMVizualisationTask extends DefaultTask {
         def kfsmViz =
             project.extensions.findByType(VizPluginExtension)
         kfsmViz.getFsms().forEach {
+            project.logger.debug("${this.name}:$it")
             def taskParam = new KFSMVizGenParam(
                     it.fsmClassName ?: error("fsmClassName required"),
                     it.input ?: error("input required")

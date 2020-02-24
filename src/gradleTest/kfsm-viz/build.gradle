@@ -1,3 +1,16 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'io.jumpco.kfsm.open:kfsm-viz-plugin:1.0.3'
+    }
+}
+
 apply plugin: 'io.jumpco.open.kfsm.viz-plugin'
 
 task runGradleTest {
