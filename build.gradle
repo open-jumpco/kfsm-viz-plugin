@@ -7,7 +7,7 @@ plugins {
     id 'org.ysb33r.gradletest' version '2.0'
 }
 
-group 'io.jumpco.open.kfsm'
+group 'io.jumpco.open'
 version '1.0.4-SNAPSHOT'
 
 apply from: 'gradle/publish.gradle'
@@ -55,7 +55,7 @@ gradleTest {
 dependencies {
     compileOnly gradleApi()
     compileOnly localGroovy()
-    implementation 'io.jumpco.open:kfsm-viz:1.0.2-SNAPSHOT'
+    implementation 'io.jumpco.open:kfsm-viz:1.0.3-SNAPSHOT'
     testCompileOnly localGroovy()
     testImplementation 'junit:junit:4.13'
     testImplementation 'org.assertj:assertj-core:3.6.2'
