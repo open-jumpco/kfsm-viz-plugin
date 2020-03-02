@@ -3,50 +3,14 @@
 == Getting started
 
 Plugin Id: io.jumpco.open.kfsm.viz-plugin
-Version: 1.0.4-SNAPSHOT
+Version: 1.0.4
 
 === Gradle Groovy DSL
 [source,groovy]
 ----
 plugins {
-    id 'io.jumpco.open.kfsm.viz-plugin' version '1.0.3'
+    id 'io.jumpco.open.kfsm.viz-plugin' version '1.0.4'
 }
-----
-
-[Important]
-====
-*Important*
-
-- The plugin is pending approval and not yet available.
-- Hopefully sorted soon.
-====
-
-== Local Build
-Until the plugin has been published you can build locally by  doing the following:
-[source,bash]
-----
-git clone https://github.com/open-jumpco/kfsm-viz-plugin.git
-cd kfsm-viz-plugin
-./gradlew publishToMavenLocal
-----
-
-Then add the following to the build file:
-[source,groovy]
-----
-buildscript {
-    repositories {
-        mavenLocal()
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'io.jumpco.kfsm.open:kfsm-viz-plugin:1.0.3'
-    }
-}
-
-apply plugin: 'io.jumpco.open.kfsm.viz-plugin'
 ----
 
 == Configuration
