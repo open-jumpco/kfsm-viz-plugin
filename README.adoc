@@ -66,3 +66,189 @@ kfsmViz {
 ----
 ./gradle :generateFsmViz
 ----
+
+== Expected output
+
+=== Turnstile State Table
+|===
+| Start | Event[Guard] | Target | Action
+
+| LOCKED
+| COIN
+| UNLOCKED
+a| [source,kotlin]
+----
+{
+unlock()
+}
+----
+
+| UNLOCKED
+| COIN
+| UNLOCKED
+a| [source,kotlin]
+----
+{
+returnCoin()
+}
+----
+
+| UNLOCKED
+| PASS
+| LOCKED
+a| [source,kotlin]
+----
+{
+lock()
+}
+----
+|===
+
+=== Turnstile State Diagram
+
+image:turnstile.png[]
+
+=== PacketReader State Table
+|===
+| Start | Event[Guard] | Target | Action
+
+| [*]
+| CTRL `[{it == CharacterConstants.SOH}]`
+| RCVPCKT
+a|
+
+| RCVPCKT
+| CTRL `[{it == CharacterConstants.STX}]`
+| RCVDATA
+a| [source,kotlin]
+----
+{
+addField()
+}
+----
+
+| RCVPCKT
+| BYTE
+| RCVCHK
+a| [source,kotlin]
+----
+{
+addChecksum(it)
+}
+----
+
+| RCVDATA
+| BYTE
+| RCVDATA
+a| [source,kotlin]
+----
+{
+addByte(it)
+}
+----
+
+| RCVDATA
+| CTRL `[{it == CharacterConstants.ETX}]`
+| RCVPCKT
+a| [source,kotlin]
+----
+{
+endField()
+}
+----
+
+| RCVDATA
+| ESC
+| RCVESC
+a|
+
+| RCVESC
+| ESC
+| RCVDATA
+a| [source,kotlin]
+----
+{
+addByte(CharacterConstants.ESC)
+}
+----
+
+| RCVESC
+| CTRL
+| RCVDATA
+a| [source,kotlin]
+----
+{
+addByte(it)
+}
+----
+
+| RCVCHK
+| BYTE
+| RCVCHK
+a| [source,kotlin]
+----
+{
+addChecksum(it)
+}
+----
+
+| RCVCHK
+| ESC
+| RCVCHKESC
+a|
+
+| RCVCHK
+| CTRL `[{it == CharacterConstants.EOT}]`
+| CHKSUM
+a| [source,kotlin]
+----
+{
+checksum()
+}
+----
+
+| CHKSUM
+| \<<automatic>> `[{!checksumValid}]`
+| [*]
+a| [source,kotlin]
+----
+{
+sendNACK()
+}
+----
+
+| CHKSUM
+| \<<automatic>> `[{checksumValid}]`
+| [*]
+a| [source,kotlin]
+----
+{
+sendACK()
+}
+----
+
+| RCVCHKESC
+| ESC
+| RCVCHK
+a| [source,kotlin]
+----
+{
+addChecksum(CharacterConstants.ESC)
+}
+----
+
+| RCVCHKESC
+| CTRL
+| RCVCHK
+a| [source,kotlin]
+----
+{byte->
+require(byte != null)
+addChecksum(byte)
+}
+----
+|===
+
+=== PacketReader State Diagram
+
+image:packet_reader.png[]

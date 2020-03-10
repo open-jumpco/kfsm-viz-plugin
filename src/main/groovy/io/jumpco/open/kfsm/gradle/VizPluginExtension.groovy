@@ -11,6 +11,7 @@ class VizPluginExtension {
         return fsms
     }
 
+
     def fsm(String className, Closure closure) {
         def fsm = new KFSMVizPluginExtension(className)
         fsms += fsm
