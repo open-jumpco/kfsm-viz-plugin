@@ -9,7 +9,7 @@ Version: 1.4.0
 [source,groovy]
 ----
 plugins {
-    id 'io.jumpco.open.kfsm.viz-plugin' version '1.4.3'
+    id 'io.jumpco.open.kfsm.viz-plugin' version '1.4.32'
 }
 ----
 

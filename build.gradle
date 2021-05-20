@@ -9,7 +9,7 @@ plugins {
 }
 
 group 'io.jumpco.open'
-version '1.4.31'
+version '1.4.32'
 
 sourceCompatibility = 1.8
 
@@ -54,7 +54,7 @@ gradleTest {
 dependencies {
     compileOnly gradleApi()
     compile 'org.codehaus.groovy:groovy-all:2.5.14'
-    implementation 'io.jumpco.open:kfsm-viz:1.4.31'
+    implementation 'io.jumpco.open:kfsm-viz:1.4.32'
     testCompileOnly localGroovy()
     testImplementation 'junit:junit:4.13'
     testImplementation 'org.assertj:assertj-core:3.6.2'
