@@ -1,5 +1,7 @@
 = KFSM Visualization Gradle Plugin
 
+This work is licensed under link:https://www.apache.org/licenses/LICENSE-2.0.html[Apache License 2.0]
+
 == Getting started
 
 Plugin Id: io.jumpco.open.kfsm.viz-plugin
