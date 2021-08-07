@@ -5,13 +5,13 @@ This work is licensed under link:https://www.apache.org/licenses/LICENSE-2.0.htm
 == Getting started
 
 Plugin Id: io.jumpco.open.kfsm.viz-plugin
-Version: 1.4.0
+Version: 1.5.0
 
 === Gradle Groovy DSL
 [source,groovy]
 ----
 plugins {
-    id 'io.jumpco.open.kfsm.viz-plugin' version '1.4.32.1'
+    id 'io.jumpco.open.kfsm.viz-plugin' version '1.5.0'
 }
 ----
 
@@ -59,6 +59,13 @@ kfsmViz {
         isGeneratePlantUml = true
         isGenerateAsciidoc = true
     }
+    fsm('TimerSecureTurnstileFSM') {
+        input = file('TimeoutSecureTurnstile.kt')
+        output = 'secure-turnstile'
+        outputFolder = file('generated')
+        isGeneratePlantUml = true
+        isGenerateAsciidoc = true
+    }
 }
 ----
 
@@ -71,186 +78,20 @@ kfsmViz {
 
 == Expected output
 
-=== Turnstile State Table
-|===
-| Start | Event[Guard] | Target | Action
-
-| LOCKED
-| COIN
-| UNLOCKED
-a| [source,kotlin]
-----
-{
-unlock()
-}
-----
-
-| UNLOCKED
-| COIN
-| UNLOCKED
-a| [source,kotlin]
-----
-{
-returnCoin()
-}
-----
-
-| UNLOCKED
-| PASS
-| LOCKED
-a| [source,kotlin]
-----
-{
-lock()
-}
-----
-|===
-
-=== Turnstile State Diagram
-
+=== TurnstileFSM
+==== Turnstile State Diagram
 image:turnstile.png[]
 
-=== PacketReader State Table
-|===
-| Start | Event[Guard] | Target | Action
+include::output/generated/turnstile.adoc[]
 
-| [*]
-| CTRL `[{it == CharacterConstants.SOH}]`
-| RCVPCKT
-a|
-
-| RCVPCKT
-| CTRL `[{it == CharacterConstants.STX}]`
-| RCVDATA
-a| [source,kotlin]
-----
-{
-addField()
-}
-----
-
-| RCVPCKT
-| BYTE
-| RCVCHK
-a| [source,kotlin]
-----
-{
-addChecksum(it)
-}
-----
-
-| RCVDATA
-| BYTE
-| RCVDATA
-a| [source,kotlin]
-----
-{
-addByte(it)
-}
-----
-
-| RCVDATA
-| CTRL `[{it == CharacterConstants.ETX}]`
-| RCVPCKT
-a| [source,kotlin]
-----
-{
-endField()
-}
-----
-
-| RCVDATA
-| ESC
-| RCVESC
-a|
-
-| RCVESC
-| ESC
-| RCVDATA
-a| [source,kotlin]
-----
-{
-addByte(CharacterConstants.ESC)
-}
-----
-
-| RCVESC
-| CTRL
-| RCVDATA
-a| [source,kotlin]
-----
-{
-addByte(it)
-}
-----
-
-| RCVCHK
-| BYTE
-| RCVCHK
-a| [source,kotlin]
-----
-{
-addChecksum(it)
-}
-----
-
-| RCVCHK
-| ESC
-| RCVCHKESC
-a|
-
-| RCVCHK
-| CTRL `[{it == CharacterConstants.EOT}]`
-| CHKSUM
-a| [source,kotlin]
-----
-{
-checksum()
-}
-----
-
-| CHKSUM
-| \<<automatic>> `[{!checksumValid}]`
-| [*]
-a| [source,kotlin]
-----
-{
-sendNACK()
-}
-----
-
-| CHKSUM
-| \<<automatic>> `[{checksumValid}]`
-| [*]
-a| [source,kotlin]
-----
-{
-sendACK()
-}
-----
-
-| RCVCHKESC
-| ESC
-| RCVCHK
-a| [source,kotlin]
-----
-{
-addChecksum(CharacterConstants.ESC)
-}
-----
-
-| RCVCHKESC
-| CTRL
-| RCVCHK
-a| [source,kotlin]
-----
-{byte->
-require(byte != null)
-addChecksum(byte)
-}
-----
-|===
-
-=== PacketReader State Diagram
-
+=== PacketReaderFSM
+==== PacketReader State Diagram
 image:packet_reader.png[]
+
+include::output/generated/packet-reader.adoc[]
+
+=== TimeoutSecureTurnstileFSM
+==== TimeoutSecureTurnstile State Diagram
+image:secure-turnstile.png[]
+
+include::output/generated/secure-turnstile.adoc[]

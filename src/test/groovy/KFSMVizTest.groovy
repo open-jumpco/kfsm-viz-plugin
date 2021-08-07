@@ -49,6 +49,13 @@ class KFSMVizTest {
             isGeneratePlantUml = true
             isGenerateAsciidoc = true
         }            
+        fsm('TimerSecureTurnstileFSM') {
+            input = file('TimeoutSecureTurnstile.kt')
+            output = 'secure-turnstile'
+            outputFolder = file('generated')
+            isGeneratePlantUml = true
+            isGenerateAsciidoc = true
+        }
     }
 """
         def result = GradleRunner.create()

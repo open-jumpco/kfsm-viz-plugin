@@ -14,4 +14,11 @@ plugins { id 'io.jumpco.open.kfsm.viz-plugin' }
             isGeneratePlantUml = true
             isGenerateAsciidoc = true
         }            
+        fsm('TimerSecureTurnstileFSM') {
+            input = file('TimeoutSecureTurnstile.kt')
+            output = 'secure-turnstile'
+            outputFolder = file('generated')
+            isGeneratePlantUml = true
+            isGenerateAsciidoc = true
+        }
     }
