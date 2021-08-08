@@ -11,7 +11,7 @@ Version: 1.5.0
 [source,groovy]
 ----
 plugins {
-    id 'io.jumpco.open.kfsm.viz-plugin' version '1.5.0'
+    id 'io.jumpco.open.kfsm.viz-plugin' version '1.5.1'
 }
 ----
 

@@ -12,6 +12,7 @@ package io.jumpco.open.kfsm.gradle
 import io.jumpco.open.kfsm.viz.Parser
 import io.jumpco.open.kfsm.viz.Visualization
 import org.gradle.api.DefaultTask
+import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.InputFiles
 import org.gradle.api.tasks.OutputFiles
 import org.gradle.api.tasks.TaskAction
@@ -22,7 +23,7 @@ class KFSMVizualisationTask extends DefaultTask {
     @InputFiles
     Set<File> inputFiles = new HashSet<>()
 
-
+    @Input
     List<KFSMVizGenParam> fsmParams = []
 
     @TaskAction
