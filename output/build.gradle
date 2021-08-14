@@ -19,6 +19,7 @@ plugins { id 'io.jumpco.open.kfsm.viz-plugin' }
             output = 'secure-turnstile'
             outputFolder = file('generated')
             isGeneratePlantUml = true
+            isGeneratePlantUmlSimple = false
             isGenerateAsciidoc = true
         }
     }

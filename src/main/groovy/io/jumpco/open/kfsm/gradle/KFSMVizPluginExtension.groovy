@@ -7,9 +7,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and limitations under the License.
  */
-package io.jumpco.open.kfsm.gradle;
-
-import java.io.File
+package io.jumpco.open.kfsm.gradle
 
 class KFSMVizPluginExtension {
     KFSMVizPluginExtension(String fsmClassName) {
@@ -22,6 +20,7 @@ class KFSMVizPluginExtension {
     String plantUmlName = null
     String asciidocName = null
     Boolean isGeneratePlantUml = false
+    Boolean isGeneratePlantUmlSimple = null
     Boolean isGenerateAsciidoc = false
 
     boolean equals(o) {
@@ -53,6 +52,7 @@ class KFSMVizPluginExtension {
                 .add("plantUmlName='" + plantUmlName + "'")
                 .add("asciidocName='" + asciidocName + "'")
                 .add("isGeneratePlantUml=" + isGeneratePlantUml)
+                .add("isGeneratePlantUmlSimple=" + isGeneratePlantUmlSimple)
                 .add("isGenerateAsciidoc=" + isGenerateAsciidoc)
                 .toString();
     }

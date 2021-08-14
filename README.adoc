@@ -5,13 +5,13 @@ This work is licensed under link:https://www.apache.org/licenses/LICENSE-2.0.htm
 == Getting started
 
 Plugin Id: io.jumpco.open.kfsm.viz-plugin
-Version: 1.5.0
+Version: 1.5.2
 
 === Gradle Groovy DSL
 [source,groovy]
 ----
 plugins {
-    id 'io.jumpco.open.kfsm.viz-plugin' version '1.5.1'
+    id 'io.jumpco.open.kfsm.viz-plugin' version '1.5.2'
 }
 ----
 
@@ -24,16 +24,18 @@ kfsmViz {
   fsm('PacketReaderFSM') {
     input = file('src/main/kotlin/PacketReader.kt') // <1>
     isGeneratePlantUml = true // <2>
-    isGenerateAsciidoc = true // <3>
-    output = 'packet-reader' // <4>
-    outputFolder = file('generated') // <5>
-    plantUmlName = 'packet-reader-statediagram.plantuml' // <6>
-    asciidocName = 'packet-reader-state-table.adoc'      // <7>
+    isGeneratePlantUmlSimple = null // <3>
+    isGenerateAsciidoc = true // <4>
+    output = 'packet-reader' // <5>
+    outputFolder = file('generated') // <6>
+    plantUmlName = "packet-reader-state-diagram.plantuml" // <7>
+    asciidocName = 'packet-reader-state-table.adoc'      // <8>
   }
 }
 ----
 <1> `input: File`: Required, fully qualified filename of relevant source file
 <2> `isGeneratePlantUml: Boolean`: Required default is false
+<2> `isGeneratePlantUmlSimple: Boolean`: Optional default is null
 <3> `isGenerateAsciidoc: Boolean`: Required default is false
 <4> `output: String`: Optional filename base. The default is the classname
 <5> `outputFolder: File`: Optional directory for output file. Default is `$buildDir/generated`

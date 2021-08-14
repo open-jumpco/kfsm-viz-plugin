@@ -13,6 +13,7 @@ class KFSMVizGenParam {
     String className
     File input
     File outputPlantUml = null
+    File outputPlantUmlSimple = null
     File outputAsciiDoc = null
 
     KFSMVizGenParam(String className, File input) {
@@ -20,10 +21,11 @@ class KFSMVizGenParam {
         this.input = input
     }
 
-    KFSMVizGenParam(String className, File input, File outputPlantUml, File outputAsciiDoc) {
+    KFSMVizGenParam(String className, File input, File outputPlantUml, File outputPlantUmlSimple, File outputAsciiDoc) {
         this.className = className
         this.input = input
         this.outputPlantUml = outputPlantUml
+        this.outputPlantUmlSimple = outputPlantUmlSimple
         this.outputAsciiDoc = outputAsciiDoc
     }
 
@@ -37,7 +39,7 @@ class KFSMVizGenParam {
         if (input != that.input) return false
         if (outputAsciiDoc != that.outputAsciiDoc) return false
         if (outputPlantUml != that.outputPlantUml) return false
-
+        if (outputPlantUmlSimple != that.outputPlantUmlSimple) return false
         return true
     }
 
@@ -46,6 +48,7 @@ class KFSMVizGenParam {
         result = className.hashCode()
         result = 31 * result + input.hashCode()
         result = 31 * result + (outputPlantUml != null ? outputPlantUml.hashCode() : 0)
+        result = 31 * result + (outputPlantUmlSimple != null ? outputPlantUmlSimple.hashCode() : 0)
         result = 31 * result + (outputAsciiDoc != null ? outputAsciiDoc.hashCode() : 0)
         return result
     }

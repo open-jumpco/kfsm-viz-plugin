@@ -54,6 +54,7 @@ class KFSMVizTest {
             output = 'secure-turnstile'
             outputFolder = file('generated')
             isGeneratePlantUml = true
+            isGeneratePlantUmlSimple = false
             isGenerateAsciidoc = true
         }
     }

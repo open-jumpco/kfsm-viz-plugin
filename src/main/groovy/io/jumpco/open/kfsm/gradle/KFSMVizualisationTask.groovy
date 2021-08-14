@@ -9,6 +9,7 @@
  */
 package io.jumpco.open.kfsm.gradle
 
+
 import io.jumpco.open.kfsm.viz.Parser
 import io.jumpco.open.kfsm.viz.Visualization
 import org.gradle.api.DefaultTask
@@ -42,7 +43,14 @@ class KFSMVizualisationTask extends DefaultTask {
                 if (!it.outputPlantUml.parentFile.exists()) {
                     it.outputPlantUml.parentFile.mkdirs()
                 }
-                it.outputPlantUml.text = Visualization.plantUml(fsmContent)
+                it.outputPlantUml.text = Visualization.plantUml(fsmContent, true)
+            }
+            if (it.outputPlantUmlSimple != null) {
+                project.logger.lifecycle("${this.name}:creating ${it.outputPlantUmlSimple}")
+                if (!it.outputPlantUmlSimple.parentFile.exists()) {
+                    it.outputPlantUmlSimple.parentFile.mkdirs()
+                }
+                it.outputPlantUmlSimple.text = Visualization.plantUml(fsmContent, false)
             }
             if (it.outputAsciiDoc != null) {
                 project.logger.lifecycle("${this.name}:creating ${it.outputAsciiDoc}")
@@ -57,10 +65,11 @@ class KFSMVizualisationTask extends DefaultTask {
     def configureTask(VizPluginExtension kfsmViz) {
         kfsmViz.getFsms().forEach {
             project.logger.debug("${this.name}:$it")
-            def taskParam = new KFSMVizGenParam(
-                    it.fsmClassName ?: error("fsmClassName required"),
-                    it.input ?: error("input required")
-            )
+            String className = it.fsmClassName
+            if (!className) throw new RuntimeException("fsmClassName required")
+            File inputFile = it.input
+            if (!inputFile) throw new RuntimeException("input required")
+            def taskParam = new KFSMVizGenParam(className, inputFile)
 
             if (it.isGenerateAsciidoc || it.asciidocName != null) {
                 def fileName = it.asciidocName ?: it.output ?: "${it.fsmClassName}.adoc"
@@ -76,14 +85,26 @@ class KFSMVizualisationTask extends DefaultTask {
                         fileName.contains(".") ? fileName : fileName + ".plantuml"
                 )
             }
+            if (it.isGeneratePlantUmlSimple || (it.isGeneratePlantUml && it.isGeneratePlantUmlSimple == null) || it.plantUmlName != null) {
+                String fileName = it.plantUmlName ?: "${it.output}-simple" ?: "${it.fsmClassName}-simple"
+                taskParam.outputPlantUmlSimple = new File(
+                        it.outputFolder ?: project.file("${project.buildDir}/generated"),
+                        fileName.contains(".") ? fileName : fileName + ".plantuml"
+                )
+            }
             fsmParams.add(taskParam)
-            inputFiles += taskParam.input
+            inputFiles.add(taskParam.input)
             if (taskParam.outputAsciiDoc != null) {
-                outputFiles += taskParam.outputAsciiDoc
+                outputFiles.add(taskParam.outputAsciiDoc)
             }
             if (taskParam.outputPlantUml != null) {
-                outputFiles += taskParam.outputPlantUml
+                outputFiles.add(taskParam.outputPlantUml)
             }
+            if (taskParam.outputPlantUmlSimple != null) {
+                outputFiles.add(taskParam.outputPlantUmlSimple)
+            }
+            project.logger.debug("inputFiles:{}", inputFiles)
+            project.logger.debug("outputFiles:{}", outputFiles)
         }
     }
 }
