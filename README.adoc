@@ -5,13 +5,13 @@ This work is licensed under link:https://www.apache.org/licenses/LICENSE-2.0.htm
 == Getting started
 
 Plugin Id: io.jumpco.open.kfsm.viz-plugin
-Version: 1.5.2
+Version: 1.5.2.1
 
 === Gradle Groovy DSL
 [source,groovy]
 ----
 plugins {
-    id 'io.jumpco.open.kfsm.viz-plugin' version '1.5.2'
+    id 'io.jumpco.open.kfsm.viz-plugin' version '1.5.2.1'
 }
 ----
 
@@ -35,12 +35,12 @@ kfsmViz {
 ----
 <1> `input: File`: Required, fully qualified filename of relevant source file
 <2> `isGeneratePlantUml: Boolean`: Required default is false
-<2> `isGeneratePlantUmlSimple: Boolean`: Optional default is null
-<3> `isGenerateAsciidoc: Boolean`: Required default is false
-<4> `output: String`: Optional filename base. The default is the classname
-<5> `outputFolder: File`: Optional directory for output file. Default is `$buildDir/generated`
-<6> `plantUmlName: String`: Optional filename for plantuml output. Default is `$output.plantuml`
-<7> `asciidocName: String`: Optional name of Asciidoc output file. Default is `$output.adoc`
+<3> `isGeneratePlantUmlSimple: Boolean`: Optional default is null
+<4> `isGenerateAsciidoc: Boolean`: Required default is false
+<5> `output: String`: Optional filename base. The default is the classname
+<6> `outputFolder: File`: Optional directory for output file. Default is `$buildDir/generated`
+<7> `plantUmlName: String`: Optional filename for plantuml output. Default is `$output.plantuml`
+<8> `asciidocName: String`: Optional name of Asciidoc output file. Default is `$output.adoc`
 
 
 === Example for multiple FSM definitions
@@ -82,18 +82,18 @@ kfsmViz {
 
 === TurnstileFSM
 ==== Turnstile State Diagram
-image:turnstile.png[]
+image:turnstile.svg[]
 
 include::output/generated/turnstile.adoc[]
 
 === PacketReaderFSM
 ==== PacketReader State Diagram
-image:packet_reader.png[]
+image:packet-reader.svg[]
 
 include::output/generated/packet-reader.adoc[]
 
 === TimeoutSecureTurnstileFSM
 ==== TimeoutSecureTurnstile State Diagram
-image:secure-turnstile.png[]
+image:secure-turnstile.svg[]
 
 include::output/generated/secure-turnstile.adoc[]
