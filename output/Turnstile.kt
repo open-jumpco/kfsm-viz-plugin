@@ -77,7 +77,6 @@ class TurnstileFSM(turnstile: Turnstile, savedState: TurnstileStates? = null) {
                 TurnstileEvents.values().toSet(),
                 Turnstile::class
             ) {
-                defaultInitialState = TurnstileStates.LOCKED
                 initialState {
                     if (locked)
                         TurnstileStates.LOCKED
