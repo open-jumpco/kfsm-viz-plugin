@@ -5,13 +5,13 @@ This work is licensed under link:https://www.apache.org/licenses/LICENSE-2.0.htm
 == Getting started
 
 Plugin Id: io.jumpco.open.kfsm.viz-plugin
-Version: 1.5.2.2
+Version: 1.5.2.4
 
 === Gradle Groovy DSL
 [source,groovy]
 ----
 plugins {
-    id 'io.jumpco.open.kfsm.viz-plugin' version '1.5.2.2'
+    id 'io.jumpco.open.kfsm.viz-plugin' version '1.5.2.4'
 }
 ----
 

@@ -9,7 +9,7 @@ plugins {
 }
 
 group 'io.jumpco.open'
-version '1.5.2.2'
+version '1.5.2.4'
 
 targetCompatibility = 1.8
 
@@ -36,6 +36,7 @@ gradlePlugin {
         kfsmVizPlugin {
             id = 'io.jumpco.open.kfsm.viz-plugin'
             implementationClass = 'io.jumpco.open.kfsm.gradle.VizPlugin'
+            version = project.version
         }
     }
 }
@@ -54,7 +55,7 @@ dependencies {
     compileOnly 'org.codehaus.groovy:groovy-all:2.5.14'
 
 
-    implementation 'io.jumpco.open:kfsm-viz:1.5.2.2'
+    implementation 'io.jumpco.open:kfsm-viz:1.5.2.4'
     testCompileOnly 'org.codehaus.groovy:groovy-all:2.5.14'
     testImplementation 'junit:junit:4.13'
     testImplementation 'org.assertj:assertj-core:3.6.2'
@@ -102,7 +103,7 @@ publishing {
         mavenJava(MavenPublication) {
             artifactId = 'kfsm-viz-plugin'
             from components.java
-            withoutBuildIdentifier()
+            withBuildIdentifier()
             artifact sourcesJar
             artifact javadocJar
 
